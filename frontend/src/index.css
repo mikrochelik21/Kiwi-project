@@ -2,6 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --kiwi-bg: #f5f7f5;
+  --kiwi-surface: #ffffff;
+  --kiwi-border: #e4e9e4;
+  --kiwi-text: #17211b;
+  --kiwi-muted: #5f6d63;
+  --kiwi-primary: #5f8f4f;
+}
+
+body {
+  margin: 0;
+  font-family: "Manrope", "Sora", "Segoe UI", sans-serif;
+  background: radial-gradient(circle at 0% 0%, #f8fbf7 0%, var(--kiwi-bg) 45%, #f3f5f3 100%);
+  color: var(--kiwi-text);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.kiwi-surface {
+  background: var(--kiwi-surface);
+  border: 1px solid var(--kiwi-border);
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(22, 34, 24, 0.04);
+}
+
+.kiwi-subtle {
+  color: var(--kiwi-muted);
+}
+
+.kiwi-pill {
+  border: 1px solid var(--kiwi-border);
+  border-radius: 999px;
+  background: #f7faf7;
+}
+
 /* Custom Animations for Landing Page */
 @keyframes fadeInScale {
   0% {
@@ -11,6 +48,15 @@
   100% {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
@@ -69,6 +115,10 @@
 
 .animate-fade-in-scale {
   animation: fadeInScale 1.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
 }
 
 .animate-gradient {

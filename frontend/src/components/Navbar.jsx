@@ -58,16 +58,16 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-2">
             <Link
-              to="/analyze"
+              to="/explore"
               className={`relative flex items-center gap-2 px-5 py-2.5 rounded-xl transition-all duration-300 overflow-hidden group ${
-                isActive("/analyze")
+                isActive("/explore")
                   ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30 scale-105"
                   : "hover:bg-green-50 hover:scale-105"
               }`}
             >
-              <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 to-lime-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isActive("/analyze") ? "hidden" : ""}`} />
-              <Search className={`size-4 relative z-10 ${isActive("/analyze") ? "" : "group-hover:text-white"}`} />
-              <span className={`font-semibold relative z-10 ${isActive("/analyze") ? "" : "group-hover:text-white"}`}>Analyze</span>
+              <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 to-lime-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isActive("/explore") ? "hidden" : ""}`} />
+              <Search className={`size-4 relative z-10 ${isActive("/explore") ? "" : "group-hover:text-white"}`} />
+              <span className={`font-semibold relative z-10 ${isActive("/explore") ? "" : "group-hover:text-white"}`}>Explore Courses</span>
             </Link>
 
             {user ? (
@@ -118,17 +118,17 @@ const Navbar = () => {
         >
           <nav className="flex flex-col gap-2 py-2">
             <Link
-              to="/analyze"
+              to="/learning-paths"
               onClick={() => setIsMobileMenuOpen(false)}
               className={`relative flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 overflow-hidden group ${
-                isActive("/analyze")
+                isActive("/learning-paths")
                   ? "bg-gradient-to-r from-green-600 to-emerald-600 text-white shadow-lg shadow-green-500/30"
                   : "hover:bg-green-50"
               }`}
             >
-              <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 to-lime-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isActive("/analyze") ? "hidden" : ""}`} />
-              <Search className={`size-5 relative z-10 ${isActive("/analyze") ? "" : "group-hover:text-white"}`} />
-              <span className={`font-semibold relative z-10 ${isActive("/analyze") ? "" : "group-hover:text-white"}`}>Analyze</span>
+              <div className={`absolute inset-0 bg-gradient-to-r from-emerald-600 to-lime-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${isActive("/learning-paths") ? "hidden" : ""}`} />
+              <Search className={`size-5 relative z-10 ${isActive("/learning-paths") ? "" : "group-hover:text-white"}`} />
+              <span className={`font-semibold relative z-10 ${isActive("/learning-paths") ? "" : "group-hover:text-white"}`}>Learning Paths</span>
             </Link>
 
             {user ? (

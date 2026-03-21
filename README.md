@@ -1,130 +1,125 @@
-<h1 align="center">🥝 Kiwi - Blog Analysis Tool ✨</h1>
+<h1 align="center">🥝 Kiwi - Career & Course Exploration Platform ✨</h1>
 
 ![Demo App](/frontend/public/screenshot-for-readme.png)
 
 <p align="center">
-  <strong>Comprehensive blog analysis powered by real metrics</strong><br>
-  Analyze content quality, UX, performance, SEO, and more — all in one place.
+  <strong>Discover your perfect career path through interactive exploration</strong><br>
+  Experience real course content, get AI-powered guidance, and make informed educational decisions.
 </p>
 
 ---
 
 ## 🌟 Overview
 
-**Kiwi** is a fullstack web application that provides in-depth analysis of any blog across 8 key modules. Perfect for creators and bloggers who want to improve their online presence with actionable insights.
+**Kiwi** is a fullstack web application that helps students and career-changers explore university programs and career paths through hands-on, interactive experiences. No more choosing majors blindly—try before you commit!
 
 ### ✨ Key Features
 
-- 🎯 **8 Comprehensive Analysis Modules**
-  - Performance (20%) - Core Web Vitals, load times, optimization
-  - Accessibility (15%) - WCAG compliance, semantic structure
-  - SEO (20%) - Meta tags, keywords, structured data
-  - Content Quality (20%) - Readability, engagement, uniqueness
-  - UX (12%) - Navigation, searchability, mobile usability
-  - Monetization (6%) - Ad placement, affiliate optimization
-  - Trust (4%) - Author credibility, content reliability, social proof
-  - Security (3%) - HTTPS, CSP, secure headers
+- 🎓 **Interactive Course Previews**
+  - Browse programs by field (Engineering, Medicine, Business, Arts, Sciences, etc.)
+  - Experience real course content through mini-lessons and exercises
+  - Gamified learning modules that simulate actual coursework
+  - Understand what each program truly involves
 
-- 🧠 **Smart Analysis Engine**
-  - 200+ individual metrics per blog
-  - Real PageSpeed metrics (LCP, CLS, FCP, TBT, TTFB) via Google PSI
-  - Smart fallback to headless browser or heuristics when PSI is unavailable
-  - Unique-topic detection via Datamuse-based keyword rarity + caches
-  - Content engagement scoring (storytelling, interactivity, visuals)
-  - Search & discovery optimization metrics
+- 🧠 **AI-Powered Career Guidance**
+  - Personalized interest and skills assessments
+  - Smart career path recommendations based on your profile
+  - Industry insights and job market trends
+  - Skills mapping for different professions
 
-- 📊 **Actionable Recommendations**
-  - Prioritized improvement suggestions
-  - Impact and effort ratings (high/medium/low)
-  - Code examples for quick implementation
-  - Rule-based and LLM-enhanced insights
+- 💼 **Mock Interview Practice**
+  - Industry-specific interview questions
+  - AI-generated scenarios for different career paths
+  - Real-time feedback and improvement suggestions
+  - Build confidence before real interviews
 
-- 🎨 **Beautiful UI**
-  - Kiwi-themed design with green gradients
-  - Rotating kiwi loading animation
-  - Responsive across all devices
-  - Glass morphism and smooth animations
+- 📊 **Progress Tracking & Recommendations**
+  - Visual learning journey
+  - Track explored courses and developed skills
+  - Save favorite programs for later review
+  - Personalized course suggestions based on activity
 
-- ⚡ **Real-Time Analysis**
-  - Synchronous analysis endpoint for instant results
-  - Google PageSpeed Insights for real web vitals when available
-  - Cheerio-based parsing with Puppeteer fallback and safe heuristics
-  - Strict timeouts and size limits, parallel external calls
-  - Upstash Redis rate limiting (3 requests/10 seconds)
+- 🎨 **Beautiful & Accessible UI**
+  - Fresh, kiwi-themed design with green gradients
+  - Smooth animations and transitions
+  - Fully responsive across all devices
+  - Accessible to all users
+
+- ⚡ **Seamless User Experience**
+  - Fast, responsive interface
+  - Secure authentication with JWT
+  - Real-time AI interactions
+  - Mobile-friendly for learning on the go
 
 ---
 
-## 🏗️ How It Works
+## 🏭️ How It Works
 
 ### 1️⃣ **User Flow**
 
 ```
-User enters blog URL → Kiwi analyzes (15-30 seconds) → Detailed results page
+Browse Courses → Try Interactive Modules → Take Assessments → Get AI Recommendations → Track Progress
 ```
 
 **Step-by-step:**
-1. User visits landing page and clicks "Analyze"
-2. Enters target blog URL (e.g., `minimalistbaker.com`)
-3. Kiwi displays animated loading screen with rotating kiwi 🥝
-4. Backend fetches HTML, analyzes 200+ metrics across 8 modules
-5. Results page shows:
-   - Overall score (0-100)
-   - Individual module scores with breakdowns
-   - Prioritized recommendations with code examples
-   - Detailed metrics for each category
+1. User visits landing page and explores available fields
+2. Selects a course or career path of interest
+3. Engages with interactive content (mini-lessons, games, simulations)
+4. Takes optional skills/interest assessments
+5. Receives personalized AI recommendations
+6. Saves progress and favorite programs
+7. Practices with mock interviews for target careers
 
-### 2️⃣ **Analysis Architecture**
+### 2️⃣ **Platform Architecture**
 
 ```
-Frontend (React) → Express API → Analysis Engine → MongoDB (caches only)
+Frontend (React) → Express API → Content Engine → MongoDB
                 ↓
-             PageSpeed API → Puppeteer → Heuristics
+             AI Services (OpenAI/Gemini)
                 ↓
-            8 Module Scoring Systems
+            Personalized Recommendations
 ```
 
 **Backend Processing:**
-- **Fetching & Parsing**: 20s timeout, max 800KB; Cheerio parsing with safe fallbacks
-- **Performance Metrics**: Real LCP/CLS/FCP/TBT/TTFB via Google PSI when possible; Puppeteer or heuristics fallback
-- **Content & Structure**: Readability, word count, headings, internal links, duplicates
-- **Uniqueness**: Datamuse-based keyword rarity with 30-day Mongo cache
-- **SEO & Accessibility**: Meta tags, JSON-LD, canonical, semantics, contrast
-- **Trust & Security**: Author info, outbound links, HTTPS and key headers
-- **Non-Blog Gating**: Early exit for home/search/portal pages or low content
+- **User Management**: Secure authentication, profile storage, progress tracking
+- **Content Delivery**: Curated course modules, interactive exercises, career data
+- **AI Integration**: Assessment analysis, personalized recommendations, mock interviews
+- **Progress Tracking**: Learning journey visualization, skill development metrics
 
-- **Scoring**:
-  - 0-100 per module with weighted aggregate
-  - No percentile math; no analyzed-URL storage
+- **Data Models**:
+  - Users with preferences and progress
+  - Courses with modules and content
+  - Career paths with requirements and insights
+  - Assessment results and recommendations
 
-- **Rate Limiting**: Upstash Redis (3 requests / 10s / IP)
+- **Rate Limiting**: Redis-based (prevents abuse)
 
 ### 3️⃣ **Tech Stack**
 
 **Frontend:**
 - React 18 with Vite
 - React Router for navigation
-- TailwindCSS + DaisyUI for styling
+- TailwindCSS for styling
 - Lucide React for icons
 - React Hot Toast for notifications
-- Zustand for auth state management
+- Zustand for state management
 
 **Backend:**
 - Node.js + Express
-- MongoDB (via Mongoose) for lightweight caches (no results storage)
-- Google PageSpeed Insights API (real vitals) + Puppeteer fallback
-- Cheerio for fast HTML parsing
+- MongoDB (via Mongoose) for user data, courses, and progress
+- OpenAI/Gemini API for AI-powered features
 - Upstash Redis for rate limiting
-- JWT authentication (optional)
+- JWT authentication
 
 ---
 
 ## 🎨 Highlights
 
-- 🥝 **Unique Kiwi Theme** - Consistent branding with green gradients and emoji
-- 🔄 **Rotating Kiwi Loader** - Custom loading animation with circular progress ring
+- 🥝 **Unique Kiwi Theme** - Consistent branding with green gradients and fresh design
+- 🎮 **Gamified Learning** - Interactive modules that make exploration fun
 - 📱 **Fully Responsive** - Works seamlessly on mobile, tablet, and desktop
-- 🎯 **Criteria-Aligned Scoring** - Readability, informativeness, engagement, uniqueness, searchability, layout, SEO
-- 🧮 **Mathematically Sound** - All formulas verified, weights sum to 100%, proper normalization
+- 🤖 **AI-Powered Guidance** - Personalized recommendations based on your profile
+- 📈 **Progress Tracking** - Visual journey through explored courses and skills
 - 🚀 **Production Ready** - Environment configs, error handling, CORS setup
 
 
@@ -162,12 +157,19 @@ Frontend runs on `http://localhost:5173`
 
 ## 📚 API Endpoints
 
-### Analysis
-- `POST /api/analyze` - Analyze a blog (blocks non-articles/low-content pages)
-  - Body: `{ "url": "https://example.com" }`
-  - Returns: Full analysis with scores, metrics, and recommendations
+### Courses & Careers
+- `GET /api/courses` - Get all available courses
+- `GET /api/courses/:id` - Get specific course details
+- `GET /api/careers` - Get all career paths
+- `POST /api/assessments` - Submit skills/interest assessment
+- `GET /api/recommendations` - Get personalized recommendations
 
-### Authentication (Optional)
+### User Progress
+- `GET /api/progress` - Get user's learning progress
+- `POST /api/progress` - Update progress
+- `POST /api/favorites` - Save favorite courses
+
+### Authentication
 - `POST /api/auth/register` - Create account
 - `POST /api/auth/login` - Login
 - `POST /api/auth/logout` - Logout
@@ -177,11 +179,11 @@ Frontend runs on `http://localhost:5173`
 
 ## 🎯 Key Innovations
 
-1. **Personalized Recommendations** - Short, blogger-friendly tips prioritized by impact
-2. **Real Vitals Integration** - Uses PageSpeed data; falls back gracefully when needed
-3. **Uniqueness Scoring** - Datamuse-based rarity with Mongo cache and diagnostics
-4. **Non-Blog Gating** - Skips portals/homepages; focuses on real posts
-5. **Parallelized & Timeboxed** - Faster evaluation with robust timeouts
+1. **Interactive Course Exploration** - Experience real course content before committing
+2. **AI-Powered Matching** - Personalized recommendations based on skills and interests
+3. **Mock Interview Practice** - Industry-specific questions with AI feedback
+4. **Progress Visualization** - Track your learning journey and skill development
+5. **Skills Mapping** - See exactly what competencies each career path requires
 
 ---
 
@@ -201,4 +203,4 @@ MIT
 
 ---
 
-<p align="center">Made with 🥝 for creators who care about quality</p>
+<p align="center">Made with 🥝 for students exploring their future</p>

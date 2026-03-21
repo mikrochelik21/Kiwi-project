@@ -13,7 +13,7 @@ const Footer = () => {
 
   const quickLinks = [
     { label: "Home", href: "/" },
-    { label: "Create Note", href: "/create" },
+    { label: "Explore Courses", href: "/explore" },
     { label: "About", href: "#about" },
     { label: "Privacy", href: "#privacy" }
   ];
@@ -28,10 +28,10 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Sparkles className="size-8 text-primary" />
-              <h2 className="text-2xl font-bold text-accent">Simar is gay</h2>
+              <h2 className="text-2xl font-bold text-accent">Kiwi</h2>
             </div>
             <p className="text-base-content/70 leading-relaxed max-w-sm">
-              Capture your thoughts, organize your ideas, and bring your vision to life with our intuitive note-taking platform.
+              Explore courses and careers through interactive content. Make informed decisions about your educational future.
             </p>
             {/* Social Links */}
             <div className="flex gap-3 pt-2">

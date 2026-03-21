@@ -18,6 +18,41 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+    // Career exploration specific fields
+    interests: [String],
+    skills: [String],
+    exploredCourses: [{
+      course: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course"
+      },
+      progress: {
+        type: Number,
+        default: 0
+      },
+      completedModules: [String],
+      lastAccessed: Date
+    }],
+    favoriteCourses: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course"
+    }],
+    assessmentResults: [{
+      type: {
+        type: String,
+        enum: ['skills', 'interests', 'personality']
+      },
+      results: mongoose.Schema.Types.Mixed,
+      completedAt: Date
+    }],
+    recommendedCareers: [{
+      career: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Career"
+      },
+      matchScore: Number,
+      generatedAt: Date
+    }]
   },
   { timestamps: true }
 );

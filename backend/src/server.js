@@ -5,10 +5,10 @@ import path from "path";
 import compression from "compression";
 import helmet from "helmet";
 
-import notesRoutes from "./routes/notesRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-import analyzeRoutes from "./routes/analyzeRoutes.js";
-import diagnosticRoutes from "./routes/diagnosticRoutes.js";
+import coursesRoutes from "./routes/coursesRoutes.js";
+import careersRoutes from "./routes/careersRoutes.js";
+import progressRoutes from "./routes/progressRoutes.js";
 import { connectDB } from "./config/db.js";
 import rateLimiter from "./middleware/rateLimiter.js";
 import validateEnv from "./config/validateEnv.js";
@@ -58,9 +58,9 @@ app.use("/api", rateLimiter);
 
 // API Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/notes", notesRoutes);
-app.use("/api/analyze", analyzeRoutes);
-app.use("/api/diagnostic", diagnosticRoutes);
+app.use("/api/courses", coursesRoutes);
+app.use("/api/careers", careersRoutes);
+app.use("/api/progress", progressRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));

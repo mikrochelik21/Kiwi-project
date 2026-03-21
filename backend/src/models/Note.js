@@ -1,27 +1,41 @@
 import mongoose from "mongoose";
 
-// 1st step: You need to create a schema
-// 2nd step: You would create a model based off of that schema
-
-const noteSchema = new mongoose.Schema(
+// Course model - represents an academic program or course
+const courseSchema = new mongoose.Schema(
   {
     title: {
       type: String,
       required: true,
     },
-    content: {
+    field: {
+      type: String,
+      required: true,
+      enum: ['Engineering', 'Medicine', 'Business', 'Arts', 'Sciences', 'Technology', 'Other']
+    },
+    description: {
       type: String,
       required: true,
     },
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
+    modules: [{
+      title: String,
+      content: String,
+      type: {
+        type: String,
+        enum: ['lesson', 'game', 'quiz', 'simulation']
+      },
+      duration: Number // in minutes
+    }],
+    requiredSkills: [String],
+    careerPaths: [String],
+    difficulty: {
+      type: String,
+      enum: ['Beginner', 'Intermediate', 'Advanced']
     },
+    duration: String, // e.g., "4 years", "6 months"
   },
-  { timestamps: true } // createdAt, updatedAt
+  { timestamps: true }
 );
 
-const Note = mongoose.model("Note", noteSchema);
+const Course = mongoose.model("Course", courseSchema);
 
-export default Note;
+export default Course;
