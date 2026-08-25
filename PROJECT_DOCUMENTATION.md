@@ -1,7 +1,7 @@
 # 🥝 Kiwi - Project Documentation
 
-> **Career & Course Exploration Platform**  
-> A full-stack MERN application that helps students and career-changers explore academic programs through interactive content and AI-powered guidance.
+> **Comprehensive Blog Analysis Platform**  
+> A full-stack MERN application that analyzes blogs across 8 key dimensions.
 
 ---
 
@@ -20,78 +20,68 @@
 
 ## 🎯 Project Overview
 
-**The Problem:**
-Many individuals—high school students choosing majors or adults considering career changes—make educational decisions based on stereotypes, vague descriptions, or family pressure. This leads to:
-- High rates of major switching
-- Career dissatisfaction
-- Wasted time and resources
-- Misalignment between expectations and reality
+Kiwi analyzes food blogs and content across **8 critical dimensions**:
+- **Performance** (20%) - Core Web Vitals, load times
+- **Content** (20%) - Readability, engagement, uniqueness  
+- **SEO** (20%) - Meta tags, structured data
+- **Accessibility** (15%) - WCAG compliance
+- **User Experience** (12%) - Navigation, mobile usability
+- **Monetization** (6%) - Ad optimization
+- **Trust** (4%) - Author credibility
+- **Security** (3%) - HTTPS, secure headers
 
-**Our Solution:**
-Kiwi provides **hands-on exploration** of university courses and career paths through:
-- **Interactive Course Previews** - Experience real course content before committing
-- **Skills Mapping** - Discover which skills are needed for different career paths
-- **Personalized Guidance** - AI-powered recommendations based on interests and strengths
-- **Career Simulators** - Interactive modules showing what different professions actually involve
-- **Mock Interviews** - AI-generated interview questions for various career paths
-
-**Core Features:**
-- Browse engineering, medicine, business, arts, and more academic tracks
-- Try interactive lessons and mini-games from real courses
-- Get personalized course recommendations based on skill assessments
-- Explore career paths with detailed job descriptions and required competencies
-- Practice with AI mock interviews for different industries
+**Key Capabilities:**
+- Analyzes 200+ metrics per blog in 15-60 seconds
+- Dual uniqueness scoring (web-wide vs food blog industry)
+- Interactive metric explorer with 100+ definitions
+- Actionable recommendations prioritized by impact
+- Real performance data via Google PageSpeed Insights
 
 ---
 
 ## 🏗️ Architecture
 
-**Client** (React + Vite) → **API** (Express) → **Content Engine** → **AI Services** (OpenAI/Gemini)
+**Client** (React + Vite) → **API** (Express) → **Analysis Engine** → **External APIs** (PageSpeed, Datamuse)
                                                    ↓
-                                           **MongoDB** (user data, progress, courses)
-                                           **Redis** (rate limiting, session management)
+                                           **MongoDB** (cache only)
+                                           **Redis** (rate limiting)
 
 **Data Flow:**
-1. User browses available courses/careers
-2. Selects interactive module or takes assessment
-3. Backend serves curated educational content
-4. AI analyzes user responses and preferences
-5. Personalized recommendations generated
-6. Progress tracked and saved to user profile
+1. User submits URL
+2. Backend fetches HTML (20s timeout, 800KB max)
+3. Parallel analysis across 8 modules
+4. External API calls (PageSpeed for metrics, Datamuse for uniqueness)
+5. Score calculation with weighted aggregate
+6. Return results with recommendations
 
 ---
 
 ## ✨ Key Features
 
-### 1. Interactive Course Explorer
-- **Browse by Field**: Engineering, Medicine, Business, Arts, Sciences, etc.
-- **Preview Content**: Mini-lessons and interactive exercises from real courses
-- **Skill Mapping**: See which skills each program develops
-- **Gamified Learning**: Engaging challenges that simulate course material
+### 1. Comprehensive Analysis
+- **8 Analysis Modules** with 200+ metrics
+- **Real Performance Data** from Google PageSpeed Insights
+- **Dual Uniqueness Scoring**:
+  - Web uniqueness (vs general web using Datamuse API)
+  - Industry uniqueness (vs food blog database)
+  - Analyzes 5 least common keywords from 50 extracted
 
-### 2. Personalized Career Guidance
-- **Interest Assessment**: AI-powered quiz to identify strengths and preferences
-- **Career Path Matching**: Recommendations based on skills, interests, and goals
-- **Industry Insights**: Real job market data and growth projections
-- **Success Stories**: Learn from professionals in various fields
+### 2. Interactive Metric Explorer
+- **100+ metrics** organized by category
+- **Two view modes**: Grid (module cards) & Explorer (searchable library)
+- **Real-time search** and category filtering
+- **Detailed explanations** for each metric (why it matters, calculation, ideal range)
 
-### 3. AI Mock Interviews
-- **Industry-Specific Questions**: Tailored to different career paths
-- **Real-time Feedback**: AI analysis of responses
-- **Practice Scenarios**: Common interview situations by profession
-- **Improvement Tips**: Personalized suggestions for better performance
+### 3. Smart Recommendations
+- Prioritized by impact (high/medium/low)
+- Effort estimation
+- Human-friendly, actionable advice
 
-### 4. Progress Tracking
-- **Learning Journey**: Visual representation of explored courses
-- **Skill Development**: Track competencies gained through modules
-- **Saved Favorites**: Bookmark interesting programs for later
-- **Recommendation History**: Review past AI suggestions
-
-### 5. User Experience
-- **Kiwi-themed design** with fresh, educational aesthetics
-- **Mobile-responsive** for learning on the go
-- **Intuitive navigation** through complex course catalogs
-- **Fully accessible** for all users
+### 4. User Experience
+- Kiwi-themed design with animations
+- One-page PDF export
+- Share functionality
+- Fully responsive
 
 ---
 
@@ -107,15 +97,7 @@ Kiwi provides **hands-on exploration** of university courses and career paths th
 
 **Backend:**
 - Node.js + Express
-- MongoDB + Mongoose
-- JWT Authentication
-- Redis (Upstash) - rate limiting
-- OpenAI/Gemini API - AI features
-
-**DevOps:**
-- Git + GitHub
-- Vercel/Render deployment
-- Environment-based configuration
+- MongoDB + Mongoose (caching only)
 - Puppeteer (headless browser)
 - Cheerio (HTML parsing)
 - JWT authentication
